@@ -4,14 +4,12 @@ using namespace std;
 
 int main() {
     setlocale(LC_ALL, "RU");
-    char a;
-    string n;
+    char c;
     int count = 0;
+    string n;
     cout << "Введите строку: ";
-    cin >> a;
-    while (cin.get(a) && a != '\n') {
-        n += a;
-        if (a == 'a' || a == 'A' || a == 'e' || a == 'E' || a == 'i' || a == 'I' || a == 'o' || a == 'O' || a == 'y' || a == 'Y' || a == 'u' || a == 'U') {
+    while (cin.get(c) && c != '\n') {
+        if (c == 'a' || c == 'A' || c == 'e' || c == 'E' || c == 'i' || c == 'I' || c == 'o' || c == 'O' || c == 'y' || c == 'Y' || c == 'u' || c == 'U') {
             count += 1;
         }
     }
@@ -19,6 +17,5 @@ int main() {
     cout << "Количество гласных букв в строке: " << count;
     return 0;
     }
-
 
 

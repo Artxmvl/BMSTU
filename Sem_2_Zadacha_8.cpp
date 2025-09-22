@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -14,10 +14,11 @@ int main() {
         if (a == 'a' || a == 'A' || a == 'e' || a == 'E' || a == 'i' || a == 'I' || a == 'o' || a == 'O' || a == 'y' || a == 'Y' || a == 'u' || a == 'U') {
             count += 1;
         }
+    }
 
-    
     cout << "Количество гласных букв в строке: " << count;
     return 0;
-}
+    }
+
 
 

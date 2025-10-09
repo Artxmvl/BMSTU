@@ -1,58 +1,73 @@
-﻿#include <iostream>
+#include <iostream>
+
 using namespace std;
 
+double determinant(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+	return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+}
+
+
 int main() {
-    setlocale(LC_ALL, "RU");
-    // Система уравнений №7:
-    // x + y + z = 6
-    // 2x - y + 3z = 14  
-    // -x + 4y - z = 2
+	setlocale(LC_ALL, "RU");
 
-    // Метод Крамера для системы 3x3
-    int a1 = 1, b1 = 1, c1 = 1, d1 = 6;
-    int a2 = 2, b2 = -1, c2 = 3, d2 = 14;
-    int a3 = -1, b3 = 4, c3 = -1, d3 = 2;
+	/*
+	Система уравнений
+	x + y + z = 6 
+	2x - y + 3z = 14
+	-x + 4y - z = 2
+	*/
 
-    cout << "Система уравнений №7:" << endl;
-    cout << a1 << "x + " << b1 << "y + " << c1 << "z = " << d1 << endl;
-    cout << a2 << "x + " << b2 << "y + " << c2 << "z = " << d2 << endl;
-    cout << a3 << "x + " << b3 << "y + " << c3 << "z = " << d3 << endl;
+	cout << "Решение системы методом Крамера" << endl;
+	cout << "x + y + z = 6" << endl;
+	cout << "2x - y + 3z = 14" << endl;
+	cout << "-x + 4y - z = 2" << endl;
+	cout << endl;
 
-    // Главный определитель
-    int det = a1 * (b2 * c3 - b3 * c2) - b1 * (a2 * c3 - a3 * c2) + c1 * (a2 * b3 - a3 * b2);
+	// Основной определитель 
+	double det = determinant(1, 1, 1, 2, -1, 3, -1, 4, -1);
+	cout << "Основной определитель" << endl;
+	cout << "|1   1   1|" << endl;
+	cout << "|2  -1   3|" << "=" << det << endl;
+	cout << "|-1  4  -1|" << endl;
 
-    // Определитель для x
-    int det_x = d1 * (b2 * c3 - b3 * c2) - b1 * (d2 * c3 - d3 * c2) + c1 * (d2 * b3 - d3 * b2);
+	// Определитель для x (замена первого столбца)
+	double det_x = determinant(6, 1, 1, 14, -1, 3, 2, 4, -1);
+	cout << "Определитель для x" << endl;
+	cout << "|6   1   1|" << endl;
+	cout << "|14  -1  3|" << "=" << det_x << endl;
+	cout << "|2   4  -1|" << endl;
 
-    // Определитель для y
-    int det_y = a1 * (d2 * c3 - d3 * c2) - d1 * (a2 * c3 - a3 * c2) + c1 * (a2 * d3 - a3 * d2);
+	// Определитель для y (замена второго столбца)
+	double det_y = determinant(1, 6, 1, 2, 14, 3, -1, 2, -1);
+	cout << "Определитель для y" << endl;
+	cout << "|1   6   1|" << endl;
+	cout << "|2  14   3|" << "=" << det_y << endl;
+	cout << "|-1  2  -1|" << endl;
 
-    // Определитель для z
-    int det_z = a1 * (b2 * d3 - b3 * d2) - b1 * (a2 * d3 - a3 * d2) + d1 * (a2 * b3 - a3 * b2);
+	// Определитель для z (замена третьего столбца)
+	double det_z = determinant(1, 1, 6, 2, -1, 14, -1, 4, 2);
+	cout << "Определитель для z" << endl;
+	cout << "|1   1   6|" << endl;
+	cout << "|2  -1  14|" << "=" << det_z << endl;
+	cout << "|-1  4   2|" << endl;
 
-    if (det == 0) {
-        cout << "Система не имеет единственного решения" << endl;
-        return 0;
-    }
+	// Проверяем, имеет ли система решение
+	if (det != 0) {
+		double x = det_x / det;
+		double y = det_y / det;
+		double z = det_z / det;
 
-    int x = det_x / det;
-    int y = det_y / det;
-    int z = det_z / det;
-
-    cout << "\nРешение:" << endl;
-    cout << "x = " << x << endl;
-    cout << "y = " << y << endl;
-    cout << "z = " << z << endl;
-
-    // Проверка
-    cout << "\nПроверка:" << endl;
-    cout << "1: " << a1 << "*" << x << " + " << b1 << "*" << y << " + " << c1 << "*" << z << " = "
-        << a1 * x + b1 * y + c1 * z << " (должно быть " << d1 << ")" << endl;
-    cout << "2: " << a2 << "*" << x << " + " << b2 << "*" << y << " + " << c2 << "*" << z << " = "
-        << a2 * x + b2 * y + c2 * z << " (должно быть " << d2 << ")" << endl;
-    cout << "3: " << a3 << "*" << x << " + " << b3 << "*" << y << " + " << c3 << "*" << z << " = "
-        << a3 * x + b3 * y + c3 * z << " (должно быть " << d3 << ")" << endl;
+		cout << "Решение:" << endl;
+		cout << "x = det_x / det = " << det_x << " / " << det << " = " << x << endl;
+		cout << "y = det_y / det = " << det_y << " / " << det << " = " << y << endl;
+		cout << "z = det_z / det = " << det_z << " / " << det << " = " << z << endl;
+		cout << endl;
+	}
+	else {
+		cout << "Система не имеет единственного решения (определитель = 0)" << endl;
+	}
 
 
-    return 0;
+
+	return 0;
 }

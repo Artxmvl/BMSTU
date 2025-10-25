@@ -107,8 +107,7 @@ int main()
                     // Проверяем, содержится ли подстрока во втором слове
                     if (word2.find(s) != string::npos) {
                         // Если нашли более короткую подстроку или такую же но лексикографически меньшую
-                        if (s.length() < shortestLength ||
-                            (s.length() == shortestLength && s < shortest)) {
+                        if (s.length() < shortestLength) {
                             shortestLength = s.length();
                             shortest = s;
                         }
@@ -126,4 +125,5 @@ int main()
     }
     return 0;
 }
+
 

@@ -118,12 +118,13 @@ int main()
     }
 
     if (shortest != "") {
-        cout << "Самая короткая общая подстрока: '" << shortest << "' (длина: " << shortestLength << ")" << endl;
+        cout << "\nСамая короткая общая подстрока: '" << shortest << "' (длина: " << shortestLength << ")" << endl;
     }
     else {
         cout << "Общих подстрок не найдено" << endl;
     }
     return 0;
 }
+
 
 

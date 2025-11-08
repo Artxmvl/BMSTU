@@ -5,6 +5,7 @@ SELECT
 FROM sales
 JOIN products ON sales.product_id = products.id
 JOIN categories ON products.category_id = categories.id
-GROUP BY products.id, products.name, categories.category_name группипруем товары
+GROUP BY products.id, products.name, categories.category_name --группипруем товары
 ORDER BY total_sold DESC --сортируем от большего к меньшему
+
 LIMIT 3;

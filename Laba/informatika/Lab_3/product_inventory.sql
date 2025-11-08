@@ -60,3 +60,4 @@ INSERT INTO sales (id, product_id, sale_date, quantity_sold) VALUES
 
 
 
+
